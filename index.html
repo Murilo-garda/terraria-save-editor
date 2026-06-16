@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terraria Save Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🗡️ Terraria Save Editor</h1>
+            <p>Edite seus arquivos de save do Terraria de forma fácil e segura</p>
+        </header>
+
+        <main>
+            <!-- Section de Upload -->
+            <section class="section">
+                <h2>📁 Carregar Save</h2>
+                <div class="upload-area" id="uploadArea">
+                    <p>Arraste seu arquivo de save aqui ou clique para selecionar</p>
+                    <input type="file" id="fileInput" accept=".wld,.plr" hidden>
+                </div>
+                <button class="btn btn-primary" id="selectFileBtn">Selecionar Arquivo</button>
+                <div id="fileInfo" class="file-info hidden"></div>
+            </section>
+
+            <!-- Tabs de Navegação -->
+            <div class="tabs" id="editorTabs">
+                <button class="tab-btn active" data-tab="player">👤 Jogador</button>
+                <button class="tab-btn" data-tab="inventory">🎒 Inventário</button>
+                <button class="tab-btn" data-tab="stats">📊 Estatísticas</button>
+                <button class="tab-btn" data-tab="world">🌍 Mundo</button>
+            </div>
+
+            <!-- Tab: Player -->
+            <section class="tab-content active" id="player-tab">
+                <h2>Dados do Jogador</h2>
+                <div class="form-group">
+                    <label for="playerName">Nome do Jogador:</label>
+                    <input type="text" id="playerName" class="form-control" maxlength="20">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="playerLevel">Nível:</label>
+                        <input type="number" id="playerLevel" class="form-control" min="0" max="999">
+                    </div>
+                    <div class="form-group">
+                        <label for="playerClass">Classe:</label>
+                        <select id="playerClass" class="form-control">
+                            <option value="melee">Melee (Guerreiro)</option>
+                            <option value="ranged">Ranged (Arqueiro)</option>
+                            <option value="magic">Magic (Mago)</option>
+                            <option value="summoner">Summoner (Invocador)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="playerHealth">Vida:</label>
+                        <input type="number" id="playerHealth" class="form-control" min="0" max="999">
+                    </div>
+                    <div class="form-group">
+                        <label for="playerMana">Mana:</label>
+                        <input type="number" id="playerMana" class="form-control" min="0" max="999">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="playerDifficulty">Dificuldade:</label>
+                    <select id="playerDifficulty" class="form-control">
+                        <option value="0">Normal</option>
+                        <option value="1">Expert</option>
+                        <option value="2">Master</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="playerHardcore"> Jogador Hardcore
+                    </label>
+                </div>
+            </section>
+
+            <!-- Tab: Inventory -->
+            <section class="tab-content" id="inventory-tab">
+                <h2>Inventário</h2>
+                <div class="inventory-grid" id="inventoryGrid">
+                    <!-- Slots do inventário serão gerados aqui -->
+                </div>
+                <div class="quick-tools">
+                    <button class="btn btn-secondary" id="fillInventoryBtn">Preencher Inventário</button>
+                    <button class="btn btn-secondary" id="clearInventoryBtn">Limpar Inventário</button>
+                </div>
+            </section>
+
+            <!-- Tab: Stats -->
+            <section class="tab-content" id="stats-tab">
+                <h2>Estatísticas</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <label for="statDeaths">Mortes:</label>
+                        <input type="number" id="statDeaths" class="form-control" min="0">
+                    </div>
+                    <div class="stat-card">
+                        <label for="statEnemiesDefeated">Inimigos Derrotados:</label>
+                        <input type="number" id="statEnemiesDefeated" class="form-control" min="0">
+                    </div>
+                    <div class="stat-card">
+                        <label for="statBossesDefeated">Bosses Derrotados:</label>
+                        <input type="number" id="statBossesDefeated" class="form-control" min="0">
+                    </div>
+                    <div class="stat-card">
+                        <label for="statPlayTime">Tempo de Jogo (minutos):</label>
+                        <input type="number" id="statPlayTime" class="form-control" min="0">
+                    </div>
+                </div>
+                <div class="bosses-section">
+                    <h3>Bosses Derrotados</h3>
+                    <div class="bosses-grid" id="bossesGrid">
+                        <!-- Checkboxes de bosses serão gerados aqui -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab: World -->
+            <section class="tab-content" id="world-tab">
+                <h2>Dados do Mundo</h2>
+                <div class="form-group">
+                    <label for="worldName">Nome do Mundo:</label>
+                    <input type="text" id="worldName" class="form-control" maxlength="20">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="worldSize">Tamanho:</label>
+                        <select id="worldSize" class="form-control">
+                            <option value="small">Pequeno</option>
+                            <option value="medium">Médio</option>
+                            <option value="large">Grande</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="worldDifficulty">Dificuldade do Mundo:</label>
+                        <select id="worldDifficulty" class="form-control">
+                            <option value="0">Normal</option>
+                            <option value="1">Expert</option>
+                            <option value="2">Master</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="worldEvil"> Mundo Maligno (Corrupção/Crimson)
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="worldSeed">Seed do Mundo:</label>
+                    <input type="text" id="worldSeed" class="form-control" placeholder="Deixe em branco para aleatório">
+                </div>
+            </section>
+        </main>
+
+        <!-- Section de Controles -->
+        <section class="section controls">
+            <button class="btn btn-success" id="saveBtn">💾 Salvar Alterações</button>
+            <button class="btn btn-danger" id="resetBtn">🔄 Descartar Alterações</button>
+            <button class="btn btn-secondary" id="exportBtn">📥 Exportar JSON</button>
+            <button class="btn btn-secondary" id="importBtn">📤 Importar JSON</button>
+        </section>
+
+        <!-- Feedback de Status -->
+        <div id="statusMessage" class="status-message hidden"></div>
+    </div>
+
+    <script src="items.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

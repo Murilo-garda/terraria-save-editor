@@ -1,0 +1,23 @@
+{
+  "name": "terraria-save-editor",
+  "version": "1.0.0",
+  "description": "Um editor web completo para editar arquivos de save do Terraria",
+  "main": "app.js",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000"
+  },
+  "keywords": [
+    "terraria",
+    "save",
+    "editor",
+    "web",
+    "game"
+  ],
+  "author": "Murilo-garda",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Murilo-garda/terraria-save-editor.git"
+  }
+}
